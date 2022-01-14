@@ -1,27 +1,13 @@
-
-
-def login_user():
-    data_user = [
-        {
-            "user": "lzevallos",
-            "password": "12345",
-            "name": "Luis"
-        }
-    ]
-    user_name = input("Ingrese usuario: ")   
-    user_password = input("Ingrese contraseña: ")   
-    data = list(filter(lambda us: us["user"] == user_name and us["password"] == user_password, data_user))
-    if len(data) > 0:
-        
-        return True
-    else:
-        return False
+from getpass import getpass
+import login_auth
 
 
 def run():
-    auth = login_user()
-    if auth:
-        print("Esta logeado")
+    user = input("Ingrese usuario: ")
+    password = getpass("Ingrese contraseña: ")
+    data = login_auth.auth(user, password)
+    if data:
+        print("Bienvenido " + data["name"])
     else:
         print("Usuario o contraseña incorrecta")
 
